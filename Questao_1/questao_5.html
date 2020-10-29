@@ -1,0 +1,50 @@
+<html>
+
+<script>
+
+var lista = 
+    [
+        "1. FORD - FUSION 2.5L I-VCT FLEX AUTOMATICO",
+        "2. FORD - FUSION FWD 3.0 V6",
+        "3. FORD - FUSION HYBRID 2.5 AUTOMATICO",
+        "4. FORD - FUSION SEL 2.0 ECOBO. 16V 248CV AUT. (4 Portas)", 
+        "5. FORD - FUSION SEL 2.3 16V AUTOMATICO",
+        "6. FORD - FUSION SEL 2.5 16V AUTOMATICO",
+        "7. FORD - FUSION SEL 3.0 V6 24V 243CV AUTOMATICO",
+        "8. FORD - FUSION SEL 3.0 V6 AWD 24V 243 CV AUTOMATICO",
+        "9. FORD - FUSION TITANIUM 2.0 GTDI ECOBO FWD AUTOMATICO",
+        "10.FORD - FUSION TITANIUM AWD 2.0 16V GTDI TURBO AUTOMATICO", 
+        "11.FORD - FUSION TITANIUM HYBRID 2.0 145CV AUT. AUTOMATICO",
+    ]
+
+var filtro = "FUSION TITANIUM ECOBO AUT.";
+
+let strArr = filtro.split(" ");
+let index = 0;
+
+function maisCompativel(){
+   let indice; 
+   let anterior = 0;
+   let atual = 0;
+   
+   lista.forEach((a,i)=>{
+      strArr.forEach(b=>{
+         if(a.includes(b)) 
+            atual++;
+      });
+
+      if(atual > anterior){
+         indice = i;
+         anterior = atual;
+      }
+
+      atual = 0;
+  });
+  
+  return lista[indice];
+}
+
+console.log(maisCompativel());
+
+</script>
+</html>

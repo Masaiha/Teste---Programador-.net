@@ -1,0 +1,40 @@
+<html>
+<script>
+	
+	var messageEntrada = `Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
+						printer took a galley of type and scrambled it`;
+
+	var topCaracteres = 5;
+	var letras = []
+
+	populaLetras = (messageEntrada) => {
+		letras.push(
+			{
+				"letra": messageEntrada[0], 
+				"qtd": messageEntrada.match(new RegExp(messageEntrada[0], "g") || []).length
+			});
+
+		contaCaracteres(messageEntrada.replaceAll(messageEntrada[0], ""));
+	}
+
+	contaCaracteres = messageEntrada => {
+		messageEntrada = messageEntrada.trim();
+		if(!messageEntrada) return false;
+
+		populaLetras(messageEntrada.toLowerCase());
+	}
+
+	ImprimirMaioresValores = (letras, topCaracteres) => {
+		letras
+			.sort((a,b) => { return b.qtd - a.qtd })
+			.forEach((letra, index) => { index < topCaracteres ? console.log(letra) : null });
+	}
+
+	!contaCaracteres(messageEntrada) ? ImprimirMaioresValores(letras, topCaracteres) : null;
+
+
+
+
+</script>
+
+</html>

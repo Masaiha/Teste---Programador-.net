@@ -1,0 +1,22 @@
+<html>
+
+<script>
+
+var numero = 213143205434787943;
+
+var vetor = numero.toString().split('');
+
+for (var i = 0; i <= vetor.length; i++) {
+   for (var t = 0; t <= vetor.length; t++) {                      
+      if (vetor[t+1] < vetor[t]) {   
+         var temp = vetor[t];  
+         vetor [t] = vetor[t+1];
+         vetor[t+1] = temp;
+      }
+   }    
+}
+
+console.log(vetor)
+
+</script>
+</html>

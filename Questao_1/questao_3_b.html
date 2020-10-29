@@ -1,0 +1,102 @@
+<html>
+	
+	<header> 
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<style>
+			#qtdCaracteres {
+				display: block;
+			}
+			input {
+				width: 400px;
+			}
+		</style>
+	</header>
+	<body>
+		<div class="container main-container">
+			<div class="jumbotron" style="margin-top: 10;">
+				<h1 class="display-4">Contador de caracteres em uma string</h1>
+				<p class="lead">Selecione a quantidade de caracteres e tenha em mãos as suas quantidades</p>
+			</div>
+		</div>
+		<div class="container">
+			<div>
+				<span class="passo" style="display: block;">
+					<label>Digite a quantidade de caracteres</label>
+				</span>
+				<input type="text" id="qtdCaracteres" onchange="setaMessageEntrada(event)"/>
+			</div>
+			<br >
+			<div>
+				<span class="passo" style="display: block;">
+					<label>Digite a quantidade de caracteres</label>
+				</span>
+				<input type="number" id="qtdCaracteres" onchange="setatopCaracteres(event)"/>
+			</div>
+			<br >
+			<div>
+				<button class="btn btn-primary col-md-2">
+					<span class="fa fa-search"></span>
+				</button>
+			</div>
+			<hr />
+			<div>
+				<div class="qtdCaracteres"></div>
+			</div>
+			<br>
+		</div>
+	</body>
+</html>
+
+<script>
+
+	var messageEntrada = "";
+	var topCaracteres = 1;
+	var letras = []
+
+	setaMessageEntrada = event => {
+		messageEntrada = event.target.value;
+	}
+
+	setatopCaracteres= event => {
+		topCaracteres = event.target.value;
+		
+		ImprimirMaioresValores(letras, topCaracteres)
+	}
+
+	contaCaracteres = messageEntrada => {
+		messageEntrada = messageEntrada.trim();
+
+		if(!messageEntrada) return false;
+		
+		populaArray(messageEntrada.toLowerCase());
+		
+		contaCaracteres(messageEntrada.replaceAll(messageEntrada[0], ""));
+	}
+
+	ImprimirMaioresValores = (letras, topCaracteres) => {
+		if(!contaCaracteres(messageEntrada)){
+			populaNaTela(letras.sort((a,b) => { return b.qtd - a.qtd }))
+		}
+	}
+
+	populaNaTela = letras => {
+		var template = '';
+
+		letras.forEach((letra, index) => { index < topCaracteres ? 
+			template += '<div>' +"Letra: " + letra.letra + " Quantidade: " + letra.qtd + '</div>' :
+			null 
+		});
+
+		document.querySelector(".qtdCaracteres").innerHTML = template;
+	}
+
+	populaArray = (messageEntrada) => {
+		letras.push(
+		{
+			"letra": messageEntrada[0], 
+			"qtd": messageEntrada.match(new RegExp(messageEntrada[0], "g") || []).length
+		});
+	}
+
+</script>
